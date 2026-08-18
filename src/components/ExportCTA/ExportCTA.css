@@ -1,0 +1,110 @@
+/* Export CTA */
+
+.export-cta {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 120px 0;
+    background: var(--color-white);
+    color: var(--color-secondary);
+}
+
+.export-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.export-cta-content > span {
+    margin-bottom: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.export-cta-content h2 {
+    margin: 0;
+    max-width: 900px;
+    font-size: clamp(40px, 8vw, 80px);
+    line-height: 0.9;
+    font-weight: 500;
+    letter-spacing: -4px;
+}
+
+.export-cta-content p {
+    max-width: 520px;
+    margin: 28px 0 0;
+    font-size: 17px;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+/* Button */
+
+.export-cta-content a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 35px;
+    padding: 14px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+    transition: color 0.35s ease;
+}
+
+.export-cta-content a span {
+    position: relative;
+    z-index: 2;
+}
+
+.export-cta-content a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-white);
+    transform: translateY(101%);
+    transition: transform 0.35s ease;
+}
+
+.export-cta-content a:hover {
+    color: var(--color-primary);
+}
+
+.export-cta-content a:hover::before {
+    transform: translateY(0);
+}
+
+.cta-arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.export-cta-content a:hover .cta-arrow {
+    transform: translateX(5px);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .export-cta {
+        padding: 80px 0;
+    }
+
+    .export-cta-content h2 {
+        font-size: 52px;
+        letter-spacing: -2px;
+    }
+
+    .export-cta-content p {
+        font-size: 14px;
+    }
+}

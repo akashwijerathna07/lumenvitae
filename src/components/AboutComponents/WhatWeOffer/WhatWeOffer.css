@@ -1,0 +1,207 @@
+.offer-section {
+    padding: 10px 18px;
+    background-color: var(--color-white);
+}
+
+/* Main green container */
+
+.offer-wrapper {
+    width: 100%;
+    padding: 70px 0;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.offer-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Heading */
+
+.offer-heading {
+    max-width: 650px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.offer-heading > span {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.14em;
+}
+
+.offer-heading h2 {
+    margin: 0;
+    font-size: var(--heading-fsz);
+    font-weight: var(--font-semibold);
+    line-height: 0.95;
+}
+
+.offer-heading p {
+    max-width: 500px;
+    margin: 18px auto 0;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.75;
+}
+
+/* Offer list */
+
+.offer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Small equal cards */
+
+.offer-item {
+    width: 530px;
+    height: 82px;
+    display: grid;
+    grid-template-columns: 40px 1fr 22px;
+    align-items: center;
+    padding: 8px 22px;
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.69);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.4px);
+-webkit-backdrop-filter: blur(6.4px);
+    color: var(--color-secondary);
+    border-radius: 25px;
+
+    transition:
+        transform 0.3s ease
+}
+
+/* Zig-zag */
+
+.offer-left {
+    align-self: flex-start;
+    margin-left: 6%;
+}
+
+.offer-right {
+    align-self: flex-end;
+    margin-right: 6%;
+}
+
+.offer-number {
+    font-size: 16px;
+    font-weight: var(--font-semibold);
+    opacity: 0.6;
+}
+
+.offer-content h3 {
+    margin: 0 0 3px;
+    font-size: 18px;
+    font-weight: var(--font-semibold);
+}
+
+.offer-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.7;
+}
+
+.offer-item:hover {
+    transform: translateY(-5px);
+}
+
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .offer-section {
+        padding: 10px 15px;
+    }
+
+    .offer-wrapper {
+        padding: 60px 0;
+    }
+
+    .offer-item {
+        width: 400px;
+    }
+
+    .offer-left {
+        margin-left: 2%;
+    }
+
+    .offer-right {
+        margin-right: 2%;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .offer-section {
+        padding: 10px;
+    }
+
+    .offer-wrapper {
+        padding: 50px 0;
+        border-radius: var(--radius-md);
+    }
+
+    .offer-heading {
+        margin-bottom: 40px;
+        text-align: left;
+    }
+
+    .offer-heading p {
+        margin-left: 0;
+        font-size: 14px;
+    }
+
+    .offer-list {
+        gap: 14px;
+    }
+
+    .offer-item,
+    .offer-left,
+    .offer-right {
+        width: 88%;
+        height: 74px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .offer-left {
+        align-self: flex-start;
+    }
+
+    .offer-right {
+        align-self: flex-end;
+    }
+
+    .offer-item {
+        grid-template-columns: 32px 1fr 18px;
+        gap: 10px;
+        padding: 0 16px;
+    }
+
+    .offer-number {
+        font-size: 12px;
+    }
+
+    .offer-content h3 {
+        font-size: 14px;
+    }
+
+    .offer-content p {
+        font-size: 11px;
+    }
+
+    .offer-arrow {
+        font-size: 17px;
+    }
+}

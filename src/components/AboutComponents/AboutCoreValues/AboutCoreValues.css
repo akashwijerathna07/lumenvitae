@@ -1,0 +1,346 @@
+/* section */
+
+.core-values-section {
+    width: 100%;
+    padding: 20px 0;
+    background: var(--color-white);
+}
+
+/* main box */
+
+.core-values-box {
+    width: calc(100% - 56px);
+    margin: 0 auto;
+    padding: 85px 0 70px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: var(--color-secondary);
+    color: var(--color-white);
+}
+
+/* heading */
+
+.core-values-heading {
+    max-width: 720px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.core-values-heading h2 {
+    margin: 0;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -2.5px;
+    color: var(--color-white);
+}
+
+.core-values-heading p {
+    max-width: 520px;
+    margin: 18px auto 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-white);
+    opacity: 0.68;
+}
+
+/* slider */
+
+.core-values-slider {
+    width: 100%;
+}
+
+.core-values-viewport {
+    width: 100%;
+    overflow: hidden;
+}
+
+.core-values-track {
+    display: flex;
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* cards */
+
+.core-value-card {
+    position: relative;
+    flex: 0 0 50%;
+    min-height: 300px;
+    padding: 8px 14px;
+    box-sizing: border-box;
+}
+
+.core-value-card::before {
+    content: "";
+    position: absolute;
+    inset: 8px 14px;
+    border-radius: 26px 26px 75px 26px;
+    background: var(--color-white);
+}
+
+.core-value-card:nth-child(even)::before {
+    border-radius: 26px 26px 26px 75px;
+}
+
+.core-value-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* card top */
+
+.core-value-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 32px 0;
+}
+
+.core-value-number {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--color-secondary);
+}
+
+
+/* card content */
+
+.core-value-content {
+    max-width: 440px;
+    padding: 35px 32px;
+}
+
+.core-value-content h3 {
+    margin: 0 0 18px;
+    font-size: clamp(30px, 3vw, 44px);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    color: var(--color-primary);
+}
+
+.core-value-content p {
+    max-width: 390px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-primary);
+    opacity: 0.66;
+}
+
+/* controls */
+
+.core-values-controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 42px 1fr 42px;
+    align-items: center;
+    margin-top: 32px;
+}
+
+/* arrows */
+
+.core-values-arrow {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-white);
+    font-size: 16px;
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.core-values-arrow:first-child {
+    justify-self: start;
+}
+
+.core-values-arrow:last-child {
+    justify-self: end;
+}
+
+.core-values-arrow:hover {
+    border-color: var(--color-white);
+    background: var(--color-white);
+    color: var(--color-secondary);
+}
+
+/* indicators */
+
+.core-values-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.core-values-indicators button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition:
+        width 0.4s ease,
+        border-radius 0.4s ease,
+        background 0.4s ease;
+}
+
+.core-values-indicators button.active {
+    width: 30px;
+    border-radius: 50px;
+    background: var(--color-white);
+}
+
+/* tablet */
+
+@media (max-width: 1000px) {
+
+    .core-values-box {
+        width: calc(100% - 40px);
+        padding: 75px 0 65px;
+        border-radius: 24px;
+    }
+
+    .core-values-heading {
+        margin-bottom: 45px;
+    }
+
+    .core-value-card {
+        min-height: 290px;
+    }
+
+    .core-value-top {
+        padding: 27px 25px 0;
+    }
+
+    .core-value-content {
+        padding: 40px 25px 30px;
+    }
+
+    .core-values-controls {
+        grid-template-columns: 38px 1fr 38px;
+        margin-top: 28px;
+    }
+
+    .core-values-arrow {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* mobile */
+
+@media (max-width: 700px) {
+
+    .core-values-box {
+        width: calc(100% - 24px);
+        padding: 60px 0 50px;
+        border-radius: 20px;
+    }
+
+    .core-values-heading {
+        max-width: 320px;
+        margin-bottom: 38px;
+    }
+
+    .core-values-heading h2 {
+        font-size: 39px;
+        letter-spacing: -1.5px;
+    }
+
+    .core-values-heading p {
+        max-width: 290px;
+        margin-top: 14px;
+        font-size: 12px;
+    }
+
+    .core-value-card {
+        flex: 0 0 100%;
+        min-height: 280px;
+        padding: 7px 18px;
+    }
+
+    .core-value-card::before {
+        inset: 7px 18px;
+        border-radius: 22px 22px 60px 22px;
+    }
+
+    .core-value-card:nth-child(even)::before {
+        border-radius: 22px 22px 22px 60px;
+    }
+
+    .core-value-top {
+        padding: 25px 27px 0;
+    }
+
+    .core-value-content {
+        padding: 38px 27px 30px;
+    }
+
+    .core-value-content h3 {
+        font-size: 32px;
+    }
+
+    .core-value-content p {
+        font-size: 12px;
+    }
+
+    .core-values-controls {
+        grid-template-columns: 35px 1fr 35px;
+        margin-top: 24px;
+    }
+
+    .core-values-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .core-values-indicators {
+        gap: 5px;
+    }
+
+    .core-values-indicators button {
+        width: 7px;
+        height: 7px;
+    }
+
+    .core-values-indicators button.active {
+        width: 24px;
+    }
+}
+
+/* small mobile */
+
+@media (max-width: 400px) {
+    .core-values-box {
+        width: calc(100% - 20px);
+    }
+
+    .core-values-heading h2 {
+        font-size: 35px;
+    }
+
+    .core-value-card {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .core-value-card::before {
+        left: 13px;
+        right: 13px;
+    }
+}

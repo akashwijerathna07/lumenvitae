@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap');
+
+
+:root {
+  /* BRAND COLORS */
+  --color-primary: #4A2A1A;        /* Deep Cinnamon Brown */
+  --color-secondary: #173F35;      /* Dark Forest Green */
+  --color-accent: #C79A3B;    
+  --color-white: #ffffff; 
+
+  /* BACKGROUNDS */
+  --color-bg: #FFF8ED;             /* Ivory */
+  --color-bg-soft: #F3E6D3;        /* Warm Cream */
+  --color-bg-dark: #171512;        /* Soft Black */
+
+  /* TEXT */
+  --color-text: #171512;
+  --color-text-light: #FFF8ED;
+  --color-text-muted: #6F6257;
+  
+  /* EXTRA */
+  --color-gold-light: #E7C98A;
+  --color-border: #D8C6AE;
+
+  /* TYPOGRAPHY */
+  --font-heading: "DM Serif Display", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  --heading-fsz: clamp(38px, 5vw, 70px);
+
+  /* FONT WEIGHTS */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* BORDER RADIUS */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* TRANSITIONS */
+  --transition: 0.25s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-heading);
+  background-color: var(--primary-color);
+  /* margin-top: 80px; */
+}
+
+.container {
+    width: min(90%, 1200px);
+    margin-inline: auto;
+}
+

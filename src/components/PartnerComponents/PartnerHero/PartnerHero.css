@@ -1,0 +1,161 @@
+/* Partner Hero */
+.partner-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+        url("/partner-hero.png")
+        center / cover
+        no-repeat;
+    color: var(--color-white);
+}
+
+/* Overlay */
+.partner-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 18, 8, 0.5);
+    z-index: 1;
+}
+
+/* Content */
+.partner-hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.6fr 0.9fr;
+    align-items: end;
+    gap: 80px;
+    padding-top: 180px;
+    padding-bottom: 100px;
+}
+
+/* Left */
+.partner-hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.partner-hero-left > span {
+    margin-bottom: 28px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.partner-hero-left h1 {
+    max-width: 950px;
+    margin: 0;
+    font-size: var(--heading-fsz);
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+/* Right */
+/*
+.partner-hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 15px;
+}
+
+.partner-hero-right p {
+    max-width: 470px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+*/
+
+/* Button */
+.partner-hero-right a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+    padding: 14px 22px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--color-white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+    isolation: isolate;
+    transition: color 0.35s ease;
+}
+
+.partner-hero-right a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-white);
+    transform: translateY(101%);
+    transition: transform 0.35s ease;
+}
+
+.partner-hero-right a:hover {
+    color: var(--color-primary);
+}
+
+.partner-hero-right a:hover::before {
+    transform: translateY(0);
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .partner-hero-content {
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+        gap: 45px;
+        padding-top: 170px;
+        padding-bottom: 80px;
+    }
+
+    .partner-hero-left h1 {
+        font-size: clamp(52px, 10vw, 76px);
+    }
+
+    .partner-hero-right {
+        padding-bottom: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .partner-hero {
+        min-height: 100svh;
+    }
+
+    .partner-hero-content {
+        gap: 35px;
+        padding-top: 145px;
+        padding-bottom: 60px;
+    }
+
+    .partner-hero-left > span {
+        margin-bottom: 20px;
+        font-size: 10px;
+    }
+
+    .partner-hero-left h1 {
+        font-size: 44px;
+        line-height: 0.98;
+        letter-spacing: -2px;
+    }
+
+    .partner-hero-right p {
+        font-size: 15px;
+    }
+}

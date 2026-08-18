@@ -1,0 +1,223 @@
+/* Featured spices */
+
+.featured-spices {
+    width: 100%;
+    padding: 60px 0;
+    background: var(--color-secondary);
+}
+
+/* Header */
+
+.featured-spices-header {
+    margin-bottom: 50px;
+    color: var(--color-white);
+}
+
+.featured-spices-header > span {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.featured-spices-header h2 {
+    margin: 0;
+    max-width: 700px;
+    font-size: var(--heading-fsz);
+    line-height: 0.95;
+    font-weight: 500;
+    letter-spacing: -3px;
+}
+
+.featured-spices-header p {
+    max-width: 420px;
+    margin: 22px 0 0;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.7;
+}
+
+/* Grid */
+
+.spice-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-rows: 250px 250px;
+    gap: 18px;
+}
+
+.spice-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.spice-card:nth-child(1) {
+    grid-row: span 2;
+}
+
+.spice-card:nth-child(4) {
+    grid-column: span 2;
+}
+
+/* Image */
+
+.spice-image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.spice-image-container img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.spice-card:hover .spice-image-container img {
+    transform: scale(1.05);
+}
+
+/* Overlay */
+
+.spice-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.68) 0%,
+        rgba(0, 0, 0, 0.3) 35%,
+        rgba(0, 0, 0, 0.08) 65%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* Content */
+
+.spice-card-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px;
+    color: var(--color-white);
+}
+
+.spice-card-content h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Discover button */
+
+.spice-card-content a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50px;
+    color: var(--color-white);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-decoration: none;
+    transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+.spice-card-content a span {
+    position: relative;
+    z-index: 2;
+}
+
+.spice-card-content a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-white);
+    transform: translateY(101%);
+    transition: transform 0.35s ease;
+}
+
+.spice-card-content a:hover {
+    color: var(--color-secondary);
+    border-color: var(--color-white);
+}
+
+.spice-card-content a:hover::before {
+    transform: translateY(0);
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .featured-spices {
+        padding: 70px 0;
+    }
+
+    .spice-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 300px 300px 300px;
+    }
+
+    .spice-card:nth-child(1) {
+        grid-column: span 2;
+        grid-row: auto;
+    }
+
+    .spice-card:nth-child(4) {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .featured-spices {
+        padding: 60px 0;
+    }
+
+    .featured-spices-header {
+        margin-bottom: 35px;
+    }
+
+    .featured-spices-header h2 {
+        font-size: 46px;
+        letter-spacing: -2px;
+    }
+
+    .featured-spices-header p {
+        font-size: 14px;
+    }
+
+    .spice-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 14px;
+    }
+
+    .spice-card,
+    .spice-card:nth-child(1),
+    .spice-card:nth-child(4) {
+        grid-column: auto;
+        grid-row: auto;
+        height: 320px;
+    }
+
+    .spice-card-content {
+        padding: 18px;
+    }
+}
