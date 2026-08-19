@@ -43,22 +43,22 @@ const BrandOverview = () => {
 
                         <div className="overview-image">
                             <img
-                                src="/images/about-1.png"
-                                alt="Sri Lankan spices"
+                                src="/images/about-1.jpg"
+                                alt="Jar packaging"
                             />
                         </div>
 
                         <div className="overview-image overview-image-large">
                             <img
-                                src="/images/about-2.png"
-                                alt="Spice preparation"
+                                src="/images/about-2.jpg"
+                                alt="Cinnamon packaging"
                             />
                         </div>
 
                         <div className="overview-image">
                             <img
-                                src="/images/about-3.png"
-                                alt="Packaged spice products"
+                                src="/images/about-3.jpg"
+                                alt="Packaging design"
                             />
                         </div>
 
