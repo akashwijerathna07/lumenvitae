@@ -1,14 +1,9 @@
 import React from "react";
-import {
-    Link,
-    useLocation,
-    useParams
-} from "react-router-dom";
-
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./SingleProductDetails.css";
 
-import products from "../../../data/products";
-import scrollToTop from "../../../utils/scrollToTop";
+import products from "../../../data/products.js";
+import scrollToTop from "../../../utils/scrollToTop.js";
 
 const SingleProductDetails = () => {
     const { slug } = useParams();

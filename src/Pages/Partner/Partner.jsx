@@ -1,7 +1,7 @@
 import React from 'react'
-import PartnerHero from '../../components/PartnerComponents/PartnerHero/PartnerHero'
-import PartnerOfferings from '../../components/PartnerComponents/PartnerOfferings/PartnerOfferings'
-import PartnerCTA from '../../components/PartnerComponents/PartnerCTA/PartnerCTA'
+import PartnerHero from '../../components/PartnerComponents/PartnerHero/PartnerHero.jsx'
+import PartnerOfferings from '../../components/PartnerComponents/PartnerOfferings/PartnerOfferings.jsx'
+import PartnerCTA from '../../components/PartnerComponents/PartnerCTA/PartnerCTA.jsx'
 
 const Partner = () => {
   return (

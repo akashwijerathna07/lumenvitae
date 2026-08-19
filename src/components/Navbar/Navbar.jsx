@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
-import scrollToTop from "../../utils/scrollToTop";
+import scrollToTop from "../../utils/scrollToTop.js";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);

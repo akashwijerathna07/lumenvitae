@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./WhyUs.css";
 
-import scrollToTop from "../../utils/scrollToTop";
+import scrollToTop from "../../utils/scrollToTop.js";
 
 const WhyUs = () => {
     const sectionRef = useRef(null);

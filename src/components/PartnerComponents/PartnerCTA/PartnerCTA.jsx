@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./PartnerCTA.css";
 
-import scrollToTop from "../../../utils/scrollToTop";
+import scrollToTop from "../../../utils/scrollToTop.js";
 
 const PartnerCTA = () => {
 

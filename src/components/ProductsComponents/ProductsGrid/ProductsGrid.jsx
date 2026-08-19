@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./ProductsGrid.css";
 
-import products from "../../../data/products";
-import scrollToTop from "../../../utils/scrollToTop";
+import products from "../../../data/products.js";
+import scrollToTop from "../../../utils/scrollToTop.js";
 
 const PRODUCTS_PER_PAGE = 6;
 
