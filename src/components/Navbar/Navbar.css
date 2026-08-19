@@ -73,28 +73,62 @@
     background-color: #d1d1d1;
 }
 
-/* Cta */
 .cta-container a,
 .mobile-cta a {
+    position: relative;
+    overflow: hidden;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     padding: 10px 18px;
-    background-color: var(--color-primary);
+
+    background-color: var(--color-secondary);
     color: var(--color-text-light);
+
     font-family: var(--font-body);
     font-size: clamp(12px, 1vw, 14px);
+
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+
     border-radius: var(--radius-lg);
     white-space: nowrap;
-    transition: 0.3s ease;
+
+    transition: transform 0.3s ease;
+}
+
+.cta-container a::after,
+.mobile-cta a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+
+    width: 45%;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.35),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
 }
 
 .cta-container a:hover,
 .mobile-cta a:hover {
-    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.cta-container a:hover::after,
+.mobile-cta a:hover::after {
+    left: 130%;
 }
 
 /* Hamburger */

@@ -44,7 +44,6 @@
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
-    text-transform: uppercase;
 }
 
 .partner-hero-left h1 {
@@ -53,7 +52,6 @@
     font-size: var(--heading-fsz);
     font-weight: 700;
     line-height: 0.95;
-    text-transform: uppercase;
 }
 
 /* Right */

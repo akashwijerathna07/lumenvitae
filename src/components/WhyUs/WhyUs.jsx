@@ -69,9 +69,9 @@ const WhyUs = () => {
                     <span>WHY CHOOSE US?</span>
 
                     <h2>
-                        QUALITY YOU CAN
+                        Quality you can
                         <br />
-                        TASTE.
+                        taste.
                     </h2>
 
                     <p>

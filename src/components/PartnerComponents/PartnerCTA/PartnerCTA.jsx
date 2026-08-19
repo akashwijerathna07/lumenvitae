@@ -64,7 +64,7 @@ const PartnerCTA = () => {
                     <div className="partner-cta-text">
 
                         <h2>
-                            READY TO PARTNER?
+                            Ready to partner?
                         </h2>
                         <p>
                             Whether you're growing a local business or reaching new markets,

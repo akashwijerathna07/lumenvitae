@@ -98,7 +98,7 @@ const AboutCoreValues = () => {
                 <div className="container">
 
                     <div className="core-values-heading">
-                        <h2>OUR CORE VALUES</h2>
+                        <h2>Our core values</h2>
 
                         <p>
                             The principles that shape how we work,

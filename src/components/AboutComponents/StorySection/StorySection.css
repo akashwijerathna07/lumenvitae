@@ -7,6 +7,7 @@
 .story-heading {
     margin-bottom: 70px;
     text-align: center;
+    color: var(--color-secondary);
 }
 
 .story-heading span {

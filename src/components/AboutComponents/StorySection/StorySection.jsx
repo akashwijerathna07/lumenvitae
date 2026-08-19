@@ -6,7 +6,7 @@ const StorySection = () => {
             <div className="container">
                 <div className="story-heading">
                     <span>OUR STORY</span>
-                    <h2>THE STORY BEHIND<br />LUMEN VITAE.</h2>
+                    <h2>The story behind<br />Lumen Vitae.</h2>
                 </div>
 
                 <div className="story-row story-row-one">
@@ -14,7 +14,7 @@ const StorySection = () => {
                         <div className="story-card-content">
                             <span>OUR BEGINNING</span>
 
-                            <h3>ROOTED IN<br />SRI LANKA.</h3>
+                            <h3>Rooted in<br />Sri Lanka.</h3>
 
                             <p>
                                 Lumen Vitae was born from a deep appreciation
@@ -47,7 +47,7 @@ const StorySection = () => {
                         <div className="story-card-content">
                             <span>WHAT WE BELIEVE</span>
 
-                            <h3>AUTHENTIC BY<br />NATURE.</h3>
+                            <h3>Authentic by<br />nature.</h3>
 
                             <p>
                                 We carefully source Sri Lankan spices with a

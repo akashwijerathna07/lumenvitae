@@ -168,7 +168,7 @@ const PartnerOfferings = () => {
             <div className="container">
                 <div className="partner-offerings-heading">
                     <h2>
-                        WHAT WE OFFER
+                        What we offer
                     </h2>
                     <p>
                         Flexible spice solutions built around your business,

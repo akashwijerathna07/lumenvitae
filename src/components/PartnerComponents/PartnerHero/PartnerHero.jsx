@@ -12,9 +12,9 @@ const PartnerHero = () => {
                     <span>Partner with us</span>
 
                     <h1>
-                        BETTER SPICES.
+                        Better spices.
                         <br />
-                        STRONGER PARTNERSHIPS.  
+                        Stronger partnerships. 
                     </h1>
                 </div>
 

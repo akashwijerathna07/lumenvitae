@@ -10,9 +10,9 @@ const AboutHero = () => {
                     <span>OUR STORY</span>
 
                     <h1>
-                        ROOTED IN SRI LANKA.
+                        Rooted in Sri Lanka.
                         <br />
-                        SHARED WITH THE WORLD.
+                        Shared with the world.
                     </h1>
                 </div>
 

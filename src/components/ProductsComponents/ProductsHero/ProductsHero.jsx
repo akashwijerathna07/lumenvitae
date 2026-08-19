@@ -8,12 +8,12 @@ const ProductsHero = () => {
             <div className="products-hero-overlay"></div>
 
             <div className="container products-hero-content">
-                <span>OUR PRODUCTS</span>
+                <span>Our products</span>
 
                 <h1>
-                    EXPLORE OUR
+                    Explore our
                     <br />
-                    PRODUCT RANGE.
+                    product range.
                 </h1>
 
                 <p>
