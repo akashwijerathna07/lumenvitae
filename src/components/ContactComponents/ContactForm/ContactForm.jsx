@@ -50,6 +50,14 @@ const ContactForm = () => {
     const validateForm = () => {
         const newErrors = {};
 
+
+        // FULL NAME
+
+        if (!formData.fullName.trim()) {
+            newErrors.fullName = "Full name is required.";
+        }
+
+
         // EMAIL
 
         if (!formData.email.trim()) {
@@ -58,6 +66,13 @@ const ContactForm = () => {
             !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
         ) {
             newErrors.email = "Enter a valid email address.";
+        }
+
+
+        // COUNTRY
+
+        if (!formData.country.trim()) {
+            newErrors.country = "Country is required.";
         }
 
 
@@ -204,10 +219,14 @@ const ContactForm = () => {
 
                         {/* FULL NAME */}
 
-                        <div className="contact-field">
+                        <div
+                            className={`contact-field ${
+                                errors.fullName ? "has-error" : ""
+                            }`}
+                        >
 
                             <label htmlFor="fullName">
-                                Full Name
+                                Full Name <span>*</span>
                             </label>
 
                             <input
@@ -218,6 +237,12 @@ const ContactForm = () => {
                                 value={formData.fullName}
                                 onChange={handleChange}
                             />
+
+                            {errors.fullName && (
+                                <small className="contact-error">
+                                    {errors.fullName}
+                                </small>
+                            )}
 
                         </div>
 
@@ -254,10 +279,14 @@ const ContactForm = () => {
 
                         {/* COUNTRY */}
 
-                        <div className="contact-field">
+                        <div
+                            className={`contact-field ${
+                                errors.country ? "has-error" : ""
+                            }`}
+                        >
 
                             <label htmlFor="country">
-                                Country
+                                Country <span>*</span>
                             </label>
 
                             <input
@@ -268,6 +297,12 @@ const ContactForm = () => {
                                 value={formData.country}
                                 onChange={handleChange}
                             />
+
+                            {errors.country && (
+                                <small className="contact-error">
+                                    {errors.country}
+                                </small>
+                            )}
 
                         </div>
 
