@@ -55,7 +55,7 @@ const WhyUs = () => {
             <div className="why-sri-lankan-sticky">
                 <img
                     ref={imageRef}
-                    src="/why-sri-lankan.png"
+                    src="/why-sri-lankan.webp"
                     alt="Sri Lankan spice plantation"
                     className="why-sri-lankan-bg"
                 />

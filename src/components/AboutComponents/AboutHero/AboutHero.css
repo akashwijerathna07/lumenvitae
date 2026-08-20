@@ -3,7 +3,7 @@
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
-    background: url("/about-hero.png") center / cover no-repeat;
+    background: url("/about-hero.webp") center / cover no-repeat;
 }
 
 .about-hero-overlay {

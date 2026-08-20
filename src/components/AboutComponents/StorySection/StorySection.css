@@ -71,14 +71,14 @@
 /* CARD ONE */
 
 .story-card-one::after {
-    background-image: url("/story-section-imgs/img-1.png");
+    background-image: url("/story-section-imgs/img-1.webp");
 }
 
 
 /* CARD TWO */
 
 .story-card-two::after {
-    background-image: url("/story-section-imgs/img-2.png");
+    background-image: url("/story-section-imgs/img-2.webp");
 
     /* Keep image vertically centered */
     background-position: center 50%;

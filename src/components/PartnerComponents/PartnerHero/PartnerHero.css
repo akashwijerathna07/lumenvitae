@@ -7,7 +7,7 @@
     align-items: center;
     overflow: hidden;
     background:
-        url("/partner-hero.png")
+        url("/partner-hero.webp")
         center / cover
         no-repeat;
     color: var(--color-white);
