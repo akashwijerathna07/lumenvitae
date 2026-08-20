@@ -8,7 +8,7 @@ const ProductsHero = () => {
             <div className="products-hero-overlay"></div>
 
             <div className="container products-hero-content">
-                <span>Our products</span>
+                <span>OUR PRODUCTS</span>
 
                 <h1>
                     Explore our

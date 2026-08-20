@@ -9,7 +9,7 @@ const PartnerHero = () => {
             <div className="partner-hero-content container">
 
                 <div className="partner-hero-left">
-                    <span>Partner with us</span>
+                    <span>PARTNER WITH US</span>
 
                     <h1>
                         Better spices.
