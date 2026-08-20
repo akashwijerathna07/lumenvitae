@@ -10,8 +10,7 @@ const SingleProductDetails = () => {
 
     const location = useLocation();
 
-    const fromPage =
-        location.state?.fromPage || 1;
+    const fromPage = location.state?.fromPage || 1;
 
     const product = products.find(
         (item) => item.slug === slug
@@ -20,13 +19,13 @@ const SingleProductDetails = () => {
     if (!product) {
         return (
             <section className="single-product-not-found">
-
                 <div className="container">
                     <h1>
                         PRODUCT NOT FOUND
                     </h1>
 
-                    <Link to="/products"
+                    <Link
+                        to="/products"
                         state={{
                             scrollToProducts: true,
                             page: fromPage
@@ -35,15 +34,14 @@ const SingleProductDetails = () => {
                         BACK TO PRODUCTS
                     </Link>
                 </div>
-
             </section>
         );
     }
 
     return (
         <section className="single-product-section">
-
             <div className="container">
+
                 <div className="single-product-breadcrumb">
                     <Link
                         to="/products"
@@ -63,18 +61,18 @@ const SingleProductDetails = () => {
                 </div>
 
                 <div className="single-product-layout">
+
                     <div className="single-product-gallery">
                         <div className="single-product-main-image">
-
                             <img
                                 src={product.image}
                                 alt={product.title}
                             />
-
                         </div>
                     </div>
 
                     <div className="single-product-info">
+
                         <div className="single-product-intro">
                             <h1>
                                 {product.title}
@@ -118,10 +116,11 @@ const SingleProductDetails = () => {
                                 MAKE AN INQUIRY
                             </span>
                         </Link>
+
                     </div>
                 </div>
+
             </div>
-            
         </section>
     );
 };

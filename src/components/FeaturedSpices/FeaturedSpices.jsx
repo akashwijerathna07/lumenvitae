@@ -10,21 +10,21 @@ const FeaturedSpices = () => {
             name: "CEYLON CINNAMON",
             slug: "ceylon-cinnamon",
             desc: "Warm • Sweet • Aromatic",
-            image: "/products/cinnamon.png",
+            image: "/products/cinnamon.jpg",
             className: "spice-card spice-card-large"
         },
         {
             name: "BLACK PEPPER",
             slug: "black-pepper",
             desc: "Bold • Earthy • Fiery",
-            image: "/products/pepper.png",
+            image: "/products/black-pepper.jpg",
             className: "spice-card"
         },
         {
             name: "CARDAMOM",
             slug: "cardamom",
             desc: "Fresh • Floral • Fragrant",
-            image: "/products/cardamom.png",
+            image: "/products/cardamom.jpg",
             className: "spice-card"
         },
         {

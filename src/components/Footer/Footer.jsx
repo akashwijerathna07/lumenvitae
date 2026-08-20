@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="container">
                 <div className="footer-main">
                     <div className="footer-brand">
-                        <Link to="/" className="footer-logo">
+                        <Link to="/" className="footer-logo" onClick={scrollToTop}>
                             <img src="/icon.jpg" alt="Lumen Vitae" />
                         </Link>
 
