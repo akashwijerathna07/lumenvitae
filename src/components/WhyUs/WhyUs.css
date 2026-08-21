@@ -29,10 +29,6 @@
     will-change: transform;
 }
 
-/* .why-sri-lankan:hover .why-sri-lankan-bg {
-    transform: scale(1.02);
-} */
-
 /* Overlay */
 
 .why-sri-lankan-overlay {
@@ -128,6 +124,8 @@
     transform: translateY(0);
 }
 
+/* Tablet */
+
 @media (max-width: 900px) {
     .why-sri-lankan-content h2 {
         font-size: clamp(50px, 9vw, 78px);
@@ -138,6 +136,8 @@
         font-size: 16px;
     }
 }
+
+/* Mobile */
 
 @media (max-width: 600px) {
     .why-sri-lankan-overlay {
@@ -150,8 +150,8 @@
     }
 
     .why-sri-lankan-content {
-        justify-content: flex-end;
-        padding-bottom: 70px;
+        justify-content: center;
+        padding-bottom: 0;
     }
 
     .why-sri-lankan-content h2 {
