@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { motion } from "motion/react";
 import "./SingleProductDetails.css";
 
 import products from "../../../data/products.js";
@@ -42,7 +43,21 @@ const SingleProductDetails = () => {
         <section className="single-product-section">
             <div className="container">
 
-                <div className="single-product-breadcrumb">
+                <motion.div
+                    className="single-product-breadcrumb"
+                    initial={{
+                        opacity: 0,
+                        y: 60
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        duration: 1.8,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
+                >
                     <Link
                         to="/products"
                         state={{
@@ -58,22 +73,70 @@ const SingleProductDetails = () => {
                     <span>
                         {product.title}
                     </span>
-                </div>
+                </motion.div>
 
                 <div className="single-product-layout">
 
-                    <div className="single-product-gallery">
+                    <motion.div
+                        className="single-product-gallery"
+                        initial={{
+                            opacity: 0,
+                            x: -90,
+                            y: 70
+                        }}
+                        animate={{
+                            opacity: 1,
+                            x: 0,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.15,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <div className="single-product-main-image">
                             <img
                                 src={product.image}
                                 alt={product.title}
                             />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="single-product-info">
-
-                        <div className="single-product-intro">
+                    <motion.div
+                        className="single-product-info"
+                        initial={{
+                            opacity: 0,
+                            x: 90,
+                            y: 70
+                        }}
+                        animate={{
+                            opacity: 1,
+                            x: 0,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.25,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
+                        <motion.div
+                            className="single-product-intro"
+                            initial={{
+                                opacity: 0,
+                                y: 80
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0
+                            }}
+                            transition={{
+                                duration: 1.9,
+                                delay: 0.35,
+                                ease: [0.16, 1, 0.3, 1]
+                            }}
+                        >
                             <h1>
                                 {product.title}
                             </h1>
@@ -81,11 +144,26 @@ const SingleProductDetails = () => {
                             <p>
                                 {product.description}
                             </p>
-                        </div>
+                        </motion.div>
 
                         <div className="single-product-divider"></div>
 
-                        <div className="single-product-detail">
+                        <motion.div
+                            className="single-product-detail"
+                            initial={{
+                                opacity: 0,
+                                y: 65
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0
+                            }}
+                            transition={{
+                                duration: 1.8,
+                                delay: 0.55,
+                                ease: [0.16, 1, 0.3, 1]
+                            }}
+                        >
                             <span className="single-product-detail-label">
                                 ORIGIN
                             </span>
@@ -93,9 +171,24 @@ const SingleProductDetails = () => {
                             <p>
                                 {product.origin}
                             </p>
-                        </div>
+                        </motion.div>
 
-                        <div className="single-product-detail">
+                        <motion.div
+                            className="single-product-detail"
+                            initial={{
+                                opacity: 0,
+                                y: 65
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0
+                            }}
+                            transition={{
+                                duration: 1.8,
+                                delay: 0.7,
+                                ease: [0.16, 1, 0.3, 1]
+                            }}
+                        >
                             <span className="single-product-detail-label">
                                 COMMON USES
                             </span>
@@ -103,21 +196,37 @@ const SingleProductDetails = () => {
                             <p>
                                 {product.uses}
                             </p>
-                        </div>
+                        </motion.div>
 
                         <div className="single-product-divider"></div>
 
-                        <Link
-                            to="/contact"
-                            className="single-product-cta"
-                            onClick={scrollToTop}
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                                y: 60
+                            }}
+                            animate={{
+                                opacity: 1,
+                                y: 0
+                            }}
+                            transition={{
+                                duration: 1.8,
+                                delay: 0.85,
+                                ease: [0.16, 1, 0.3, 1]
+                            }}
                         >
-                            <span>
-                                MAKE AN INQUIRY
-                            </span>
-                        </Link>
+                            <Link
+                                to="/contact"
+                                className="single-product-cta"
+                                onClick={scrollToTop}
+                            >
+                                <span>
+                                    MAKE AN INQUIRY
+                                </span>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
 
-                    </div>
                 </div>
 
             </div>

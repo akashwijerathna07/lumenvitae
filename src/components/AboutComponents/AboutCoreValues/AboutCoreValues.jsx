@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 import "./AboutCoreValues.css";
 
 const values = [
@@ -41,7 +42,6 @@ const AboutCoreValues = () => {
         };
 
         handleResize();
-
         window.addEventListener("resize", handleResize);
 
         return () => {
@@ -92,12 +92,28 @@ const AboutCoreValues = () => {
 
     return (
         <section className="core-values-section">
-
             <div className="core-values-box">
-
                 <div className="container">
 
-                    <div className="core-values-heading">
+                    <motion.div
+                        className="core-values-heading"
+                        initial={{
+                            opacity: 0,
+                            y: 80
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.35
+                        }}
+                        transition={{
+                            duration: 2,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <h2>Our core values</h2>
 
                         <p>
@@ -105,12 +121,29 @@ const AboutCoreValues = () => {
                             make decisions and build relationships
                             that last.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="core-values-slider">
-
+                    <motion.div
+                        className="core-values-slider"
+                        initial={{
+                            opacity: 0,
+                            y: 90
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.25
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.2,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <div className="core-values-viewport">
-
                             <div
                                 className="core-values-track"
                                 style={{
@@ -119,23 +152,35 @@ const AboutCoreValues = () => {
                                     }%)`
                                 }}
                             >
-
-                                {values.map((value) => (
-                                    <article
+                                {values.map((value, index) => (
+                                    <motion.article
                                         className="core-value-card"
                                         key={value.number}
+                                        initial={{
+                                            opacity: 0,
+                                            y: 70
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                            y: 0
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                            amount: 0.2
+                                        }}
+                                        transition={{
+                                            duration: 1.8,
+                                            delay: index * 0.18,
+                                            ease: [0.16, 1, 0.3, 1]
+                                        }}
                                     >
-
                                         <div className="core-value-top">
-
                                             <span className="core-value-number">
                                                 {value.number}
                                             </span>
-
                                         </div>
 
                                         <div className="core-value-content">
-
                                             <h3>
                                                 {value.title}
                                             </h3>
@@ -143,20 +188,33 @@ const AboutCoreValues = () => {
                                             <p>
                                                 {value.text}
                                             </p>
-
                                         </div>
-
-                                    </article>
+                                    </motion.article>
                                 ))}
-
                             </div>
-
                         </div>
+                    </motion.div>
 
-                    </div>
-
-                    <div className="core-values-controls">
-
+                    <motion.div
+                        className="core-values-controls"
+                        initial={{
+                            opacity: 0,
+                            y: 60
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.4
+                        }}
+                        transition={{
+                            duration: 1.8,
+                            delay: 0.6,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <button
                             className="core-values-arrow"
                             type="button"
@@ -170,11 +228,9 @@ const AboutCoreValues = () => {
                         </button>
 
                         <div className="core-values-indicators">
-
                             {Array.from({
                                 length: maxIndex + 1
                             }).map((_, index) => (
-
                                 <button
                                     key={index}
                                     type="button"
@@ -189,9 +245,7 @@ const AboutCoreValues = () => {
                                     }}
                                     aria-label={`Go to slide ${index + 1}`}
                                 />
-
                             ))}
-
                         </div>
 
                         <button
@@ -205,13 +259,10 @@ const AboutCoreValues = () => {
                         >
                             →
                         </button>
-
-                    </div>
+                    </motion.div>
 
                 </div>
-
             </div>
-
         </section>
     );
 };

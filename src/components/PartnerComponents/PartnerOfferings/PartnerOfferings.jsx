@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 import "./PartnerOfferings.css";
 
 const offerings = [
@@ -29,22 +30,17 @@ const PartnerOfferings = () => {
     const [isDragging, setIsDragging] = useState(false);
 
     const intervalRef = useRef(null);
-
     const startX = useRef(0);
     const currentX = useRef(0);
 
-
-    /* next */
-
+    /* Next */
     const goNext = () => {
         setActiveIndex((prev) =>
             (prev + 1) % offerings.length
         );
     };
 
-
-    /* previous */
-
+    /* Previous */
     const goPrev = () => {
         setActiveIndex((prev) =>
             (prev - 1 + offerings.length) %
@@ -52,20 +48,15 @@ const PartnerOfferings = () => {
         );
     };
 
-
-    /* stop autoplay */
-
+    /* Stop autoplay */
     const stopAutoPlay = () => {
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
-
             intervalRef.current = null;
         }
     };
 
-
-    /* autoplay */
-
+    /* Autoplay */
     useEffect(() => {
         intervalRef.current = setInterval(() => {
             setActiveIndex((prev) =>
@@ -80,9 +71,7 @@ const PartnerOfferings = () => {
         };
     }, []);
 
-
-    /* card position */
-
+    /* Card position */
     const getPosition = (index) => {
         const total = offerings.length;
 
@@ -107,9 +96,7 @@ const PartnerOfferings = () => {
         return "hidden";
     };
 
-
-    /* drag start */
-
+    /* Drag start */
     const handlePointerDown = (event) => {
         stopAutoPlay();
 
@@ -123,20 +110,14 @@ const PartnerOfferings = () => {
         );
     };
 
-
-    /* drag move*/
-
+    /* Drag move */
     const handlePointerMove = (event) => {
         if (!isDragging) return;
 
         currentX.current = event.clientX;
     };
 
-
-    /* =========================
-       DRAG END
-    ========================= */
-
+    /* Drag end */
     const handlePointerUp = (event) => {
         if (!isDragging) return;
 
@@ -144,7 +125,6 @@ const PartnerOfferings = () => {
             startX.current - currentX.current;
 
         if (Math.abs(difference) > 45) {
-
             if (difference > 0) {
                 goNext();
             } else {
@@ -159,43 +139,73 @@ const PartnerOfferings = () => {
         );
     };
 
-
     return (
         <section className="partner-offerings">
-
-            {/* heading */}
-
             <div className="container">
-                <div className="partner-offerings-heading">
+                <motion.div
+                    className="partner-offerings-heading"
+                    initial={{
+                        opacity: 0,
+                        y: 80
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    viewport={{
+                        once: true,
+                        amount: 0.35
+                    }}
+                    transition={{
+                        duration: 2,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
+                >
                     <h2>
                         What we offer
                     </h2>
+
                     <p>
                         Flexible spice solutions built around your business,
                         backed by quality, consistency and dependable supply.
                     </p>
-                </div>
+                </motion.div>
             </div>
 
-            {/* Carousel */}
-
-            <div className={`partner-carousel ${
+            <motion.div
+                className={`partner-carousel ${
                     isDragging ? "is-dragging" : ""
                 }`}
-
+                initial={{
+                    opacity: 0,
+                    y: 80
+                }}
+                whileInView={{
+                    opacity: 1,
+                    y: 0
+                }}
+                viewport={{
+                    once: true,
+                    amount: 0.2
+                }}
+                transition={{
+                    duration: 2,
+                    delay: 0.2,
+                    ease: [0.16, 1, 0.3, 1]
+                }}
                 onPointerDown={handlePointerDown}
                 onPointerMove={handlePointerMove}
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerUp}
             >
-
                 {offerings.map((item, index) => {
-
                     const position = getPosition(index);
 
                     return (
-                        <article key={item.number} className={`partner-offer-card ${position}`} >
-
+                        <article
+                            key={item.number}
+                            className={`partner-offer-card ${position}`}
+                        >
                             <span className="partner-offer-number">
                                 {item.number}
                             </span>
@@ -204,6 +214,7 @@ const PartnerOfferings = () => {
                                 <h3>
                                     {item.title}
                                 </h3>
+
                                 <p>
                                     {item.text}
                                 </p>
@@ -211,29 +222,45 @@ const PartnerOfferings = () => {
                         </article>
                     );
                 })}
-            </div>
+            </motion.div>
 
-
-            {/* Indicators */}
-
-            <div className="partner-carousel-indicators">
+            <motion.div
+                className="partner-carousel-indicators"
+                initial={{
+                    opacity: 0,
+                    y: 60
+                }}
+                whileInView={{
+                    opacity: 1,
+                    y: 0
+                }}
+                viewport={{
+                    once: true,
+                    amount: 0.4
+                }}
+                transition={{
+                    duration: 1.8,
+                    delay: 0.45,
+                    ease: [0.16, 1, 0.3, 1]
+                }}
+            >
                 {offerings.map((item, index) => (
-                    <button key={item.number}
-                            type="button"
-                            aria-label={`Go to offering ${index + 1}`}
-
-                        className={ activeIndex === index
-                                    ? "active"
-                                    : "" }
-
+                    <button
+                        key={item.number}
+                        type="button"
+                        aria-label={`Go to offering ${index + 1}`}
+                        className={
+                            activeIndex === index
+                                ? "active"
+                                : ""
+                        }
                         onClick={() => {
                             stopAutoPlay();
                             setActiveIndex(index);
                         }}
                     />
-
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 };

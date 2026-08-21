@@ -1,5 +1,4 @@
 /* Featured spices */
-
 .featured-spices {
     width: 100%;
     padding: 60px 0;
@@ -7,7 +6,6 @@
 }
 
 /* Header */
-
 .featured-spices-header {
     margin-bottom: 50px;
     color: var(--color-white);
@@ -22,8 +20,8 @@
 }
 
 .featured-spices-header h2 {
-    margin: 0;
     max-width: 700px;
+    margin: 0;
     font-size: var(--heading-fsz);
     line-height: 0.95;
     font-weight: 500;
@@ -39,7 +37,6 @@
 }
 
 /* Grid */
-
 .spice-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
@@ -63,17 +60,18 @@
 }
 
 /* Image */
-
 .spice-image-container {
     width: 100%;
     height: 100%;
 }
 
 .spice-image-container img {
+    display: block;
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
+    user-select: none;
+    -webkit-user-drag: none;
     transition: transform 0.6s ease;
 }
 
@@ -82,7 +80,6 @@
 }
 
 /* Overlay */
-
 .spice-card::after {
     content: "";
     position: absolute;
@@ -98,7 +95,6 @@
 }
 
 /* Content */
-
 .spice-card-content {
     position: absolute;
     left: 0;
@@ -120,7 +116,6 @@
 }
 
 /* Discover button */
-
 .spice-card-content a {
     position: relative;
     display: inline-flex;
@@ -162,7 +157,6 @@
 }
 
 /* Tablet */
-
 @media (max-width: 900px) {
     .featured-spices {
         padding: 70px 0;
@@ -184,10 +178,10 @@
 }
 
 /* Mobile */
-
 @media (max-width: 600px) {
     .featured-spices {
         padding: 60px 0;
+        overflow: hidden;
     }
 
     .featured-spices-header {
@@ -204,17 +198,38 @@
     }
 
     .spice-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
+        display: flex;
         gap: 14px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        cursor: grab;
+        user-select: none;
+    }
+
+    .spice-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .spice-grid.dragging {
+        cursor: grabbing;
+        scroll-snap-type: none;
+        scroll-behavior: auto;
     }
 
     .spice-card,
     .spice-card:nth-child(1),
     .spice-card:nth-child(4) {
+        flex: 0 0 82%;
+        height: 360px;
         grid-column: auto;
         grid-row: auto;
-        height: 320px;
+        scroll-snap-align: start;
+        cursor: inherit;
     }
 
     .spice-card-content {

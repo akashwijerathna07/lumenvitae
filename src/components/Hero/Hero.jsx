@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+
 import "./Hero.css";
 
 const slides = [
@@ -27,10 +29,10 @@ const slides = [
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // First image is available immediately
+    /* First image is available immediately */
     const [loadedSlides, setLoadedSlides] = useState([0]);
 
-    // Auto slide every 12 seconds
+    /* Auto slide every 12 seconds */
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prev) =>
@@ -41,7 +43,7 @@ const Hero = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Loads each background only when that slide is needed
+    /* Loads each background only when that slide is needed */
     useEffect(() => {
         setLoadedSlides((prev) => {
             if (prev.includes(currentSlide)) {
@@ -68,15 +70,47 @@ const Hero = () => {
                 >
                     <div className="hero-overlay"></div>
 
-                    <div className="hero-content">
-                        <h1>
-                            {slide.title}
-                        </h1>
+                    {index === currentSlide && (
+                        <div className="hero-content">
+                            <motion.h1
+                                key={`title-${currentSlide}`}
+                                initial={{
+                                    opacity: 0,
+                                    y: 100
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0
+                                }}
+                                transition={{
+                                    duration: 2,
+                                    delay: 0.25,
+                                    ease: [0.16, 1, 0.3, 1]
+                                }}
+                            >
+                                {slide.title}
+                            </motion.h1>
 
-                        <p>
-                            {slide.text}
-                        </p>
-                    </div>
+                            <motion.p
+                                key={`text-${currentSlide}`}
+                                initial={{
+                                    opacity: 0,
+                                    y: 70
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0
+                                }}
+                                transition={{
+                                    duration: 1.8,
+                                    delay: 0.5,
+                                    ease: [0.16, 1, 0.3, 1]
+                                }}
+                            >
+                                {slide.text}
+                            </motion.p>
+                        </div>
+                    )}
                 </div>
             ))}
 

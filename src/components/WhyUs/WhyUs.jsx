@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import "./WhyUs.css";
 
 import scrollToTop from "../../utils/scrollToTop.js";
@@ -16,6 +17,7 @@ const WhyUs = () => {
             if (!sectionRef.current) return;
 
             const rect = sectionRef.current.getBoundingClientRect();
+
             const progress = Math.min(
                 Math.max(-rect.top / window.innerHeight, 0),
                 1
@@ -45,45 +47,161 @@ const WhyUs = () => {
         };
 
         window.addEventListener("scroll", handleScroll);
+
         updateScroll();
 
-        return () => window.removeEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
-        <section className="why-sri-lankan" ref={sectionRef}>
+        <section
+            className="why-sri-lankan"
+            ref={sectionRef}
+        >
             <div className="why-sri-lankan-sticky">
-                <img
+
+                <motion.img
                     ref={imageRef}
                     src="/why-sri-lankan.webp"
                     alt="Sri Lankan spice plantation"
                     className="why-sri-lankan-bg"
+                    initial={{
+                        opacity: 0,
+                        scale: 1.16
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        scale: 1.08
+                    }}
+                    viewport={{
+                        once: true,
+                        amount: 0.2
+                    }}
+                    transition={{
+                        duration: 2,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
                 />
 
                 <div className="why-sri-lankan-overlay"></div>
 
-                <div
+                <motion.div
                     className="container why-sri-lankan-content"
                     ref={contentRef}
+                    initial={{
+                        opacity: 0,
+                        y: 90
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    viewport={{
+                        once: true,
+                        amount: 0.35
+                    }}
+                    transition={{
+                        duration: 1.9,
+                        delay: 0.25,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
                 >
-                    <span>WHY CHOOSE US?</span>
+                    <motion.span
+                        initial={{
+                            opacity: 0,
+                            y: 60
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true
+                        }}
+                        transition={{
+                            duration: 1.8,
+                            delay: 0.35,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
+                        WHY CHOOSE US?
+                    </motion.span>
 
-                    <h2>
+                    <motion.h2
+                        initial={{
+                            opacity: 0,
+                            y: 85
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.5,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         Quality you can
                         <br />
                         taste.
-                    </h2>
+                    </motion.h2>
 
-                    <p>
+                    <motion.p
+                        initial={{
+                            opacity: 0,
+                            y: 70
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true
+                        }}
+                        transition={{
+                            duration: 1.9,
+                            delay: 0.7,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         From careful sourcing to final selection, we focus on
                         quality at every step. Pure spices, authentic flavour,
                         and nothing unnecessary — just the real taste of Sri Lanka.
-                    </p>
+                    </motion.p>
 
-                    <Link to="/about" onClick={scrollToTop}>
-                        <span>DISCOVER OUR STORY</span>
-                    </Link>
-                </div>
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            y: 60
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true
+                        }}
+                        transition={{
+                            duration: 1.8,
+                            delay: 0.9,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
+                        <Link
+                            to="/about"
+                            onClick={scrollToTop}
+                        >
+                            <span>DISCOVER OUR STORY</span>
+                        </Link>
+                    </motion.div>
+                </motion.div>
+
             </div>
         </section>
     );

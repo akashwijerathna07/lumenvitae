@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "motion/react";
 import "./ProductsGrid.css";
 
 import products from "../../../data/products.js";
@@ -15,7 +16,6 @@ const ProductsGrid = () => {
 
     useEffect(() => {
         if (location.state?.scrollToProducts) {
-
             if (location.state?.page) {
                 setCurrentPage(location.state.page);
             }
@@ -25,7 +25,7 @@ const ProductsGrid = () => {
                     .querySelector(".products-section")
                     ?.scrollIntoView({
                         behavior: "instant",
-                        block: "start",
+                        block: "start"
                     });
             }, 0);
         }
@@ -75,15 +75,33 @@ const ProductsGrid = () => {
             .querySelector(".products-section")
             ?.scrollIntoView({
                 behavior: "smooth",
-                block: "start",
+                block: "start"
             });
     };
 
     return (
-        <section className="products-section" id="products-grid" >
+        <section className="products-section" id="products-grid">
             <div className="container">
-                <div className="products-toolbar">
 
+                <motion.div
+                    className="products-toolbar"
+                    initial={{
+                        opacity: 0,
+                        y: 70
+                    }}
+                    whileInView={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    viewport={{
+                        once: true,
+                        amount: 0.35
+                    }}
+                    transition={{
+                        duration: 1.8,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
+                >
                     <p className="products-results">
                         Showing{" "}
                         <strong>
@@ -97,8 +115,7 @@ const ProductsGrid = () => {
                     </p>
 
                     <div className="products-search">
-
-                        <svg viewBox="0 0 24 24" aria-hidden="true" >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <circle
                                 cx="11"
                                 cy="11"
@@ -114,13 +131,34 @@ const ProductsGrid = () => {
                             onChange={handleSearch}
                         />
                     </div>
-                </div>
+                </motion.div>
 
                 {currentProducts.length > 0 ? (
                     <div className="products-grid">
-                        {currentProducts.map((product) => (
-                            <article className="product-card" key={product.id} >
-
+                        {currentProducts.map((product, index) => (
+                            <motion.article
+                                className="product-card"
+                                key={product.id}
+                                initial={{
+                                    opacity: 0,
+                                    y: 80,
+                                    scale: 0.97
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    y: 0,
+                                    scale: 1
+                                }}
+                                viewport={{
+                                    once: true,
+                                    amount: 0.2
+                                }}
+                                transition={{
+                                    duration: 1.3,
+                                    delay: index * 0.15,
+                                    ease: [0.16, 1, 0.3, 1]
+                                }}
+                            >
                                 <div className="product-card-image">
                                     <img
                                         src={product.image}
@@ -144,13 +182,25 @@ const ProductsGrid = () => {
                                         </span>
                                     </Link>
                                 </div>
-                            </article>
+                            </motion.article>
                         ))}
                     </div>
-
                 ) : (
-
-                    <div className="no-products">
+                    <motion.div
+                        className="no-products"
+                        initial={{
+                            opacity: 0,
+                            y: 60
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 1.3,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <h3>
                             No products found.
                         </h3>
@@ -158,13 +208,30 @@ const ProductsGrid = () => {
                         <p>
                             Try searching for another product.
                         </p>
-                    </div>
-
+                    </motion.div>
                 )}
 
                 {totalPages > 1 && (
-                    <div className="products-pagination">
-
+                    <motion.div
+                        className="products-pagination"
+                        initial={{
+                            opacity: 0,
+                            y: 60
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.4
+                        }}
+                        transition={{
+                            duration: 1.3,
+                            delay: 0.5,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
                         <button
                             onClick={() =>
                                 handlePageChange(
@@ -173,13 +240,14 @@ const ProductsGrid = () => {
                             }
                             disabled={currentPage === 1}
                             aria-label="Previous page"
-                        >←</button>
+                        >
+                            ←
+                        </button>
 
                         {Array.from(
                             { length: totalPages },
                             (_, index) => index + 1
                         ).map((page) => (
-
                             <button
                                 key={page}
                                 onClick={() =>
@@ -190,8 +258,9 @@ const ProductsGrid = () => {
                                         ? "pagination-number active"
                                         : "pagination-number"
                                 }
-                            >{page}</button>
-
+                            >
+                                {page}
+                            </button>
                         ))}
 
                         <button
@@ -204,8 +273,10 @@ const ProductsGrid = () => {
                                 currentPage === totalPages
                             }
                             aria-label="Next page"
-                        >→</button>
-                    </div>
+                        >
+                            →
+                        </button>
+                    </motion.div>
                 )}
             </div>
         </section>

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { motion } from "motion/react";
+
 import "./Navbar.css";
 import scrollToTop from "../../utils/scrollToTop.js";
 
@@ -16,12 +18,20 @@ const Navbar = () => {
     const closeMenu = () => setMenuOpen(false);
 
     return (
-        <nav className="nav-container">
-
+        <motion.nav
+            className="nav-container"
+            initial={{ y: -80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+                duration: 1.8,
+                delay: 0.15,
+                ease: [0.22, 1, 0.36, 1]
+            }}
+        >
             <div className="nav-main">
-
                 <div className="logo-container">
-                    <Link to="/"
+                    <Link
+                        to="/"
                         onClick={() => {
                             closeMenu();
                             scrollToTop();
@@ -56,7 +66,6 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-
                 {/* Hamburger icon */}
                 <button
                     className={`hamburger ${menuOpen ? "active" : ""}`}
@@ -68,14 +77,11 @@ const Navbar = () => {
                     <span></span>
                     <span></span>
                 </button>
-
             </div>
 
-
-            {/* mobile menu */}
+            {/* Mobile menu */}
             <div className={`mobile-menu ${menuOpen ? "active" : ""}`}>
                 <div className="mobile-menu-content">
-
                     <div className="mobile-links">
                         {navLinks.map((link, index) => (
                             <NavLink
@@ -98,7 +104,6 @@ const Navbar = () => {
                         ))}
                     </div>
 
-
                     <div className="mobile-cta">
                         <Link
                             to="/contact"
@@ -110,11 +115,9 @@ const Navbar = () => {
                             Enquire now
                         </Link>
                     </div>
-
                 </div>
             </div>
-
-        </nav>
+        </motion.nav>
     );
 };
 

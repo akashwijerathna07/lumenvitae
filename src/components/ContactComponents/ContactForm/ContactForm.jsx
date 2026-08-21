@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import "./ContactForm.css";
 
 const ContactForm = () => {
     const initialForm = {
-        fullName: "",
+        name: "",
         email: "",
         country: "",
-        businessType: "",
+        business_type: "",
         subject: "",
         message: ""
     };
@@ -21,11 +22,7 @@ const ContactForm = () => {
         message: ""
     });
 
-
-    /* =========================
-       HANDLE INPUT
-    ========================= */
-
+    /* Handle input */
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -42,23 +39,13 @@ const ContactForm = () => {
         }
     };
 
-
-    /* =========================
-       VALIDATION
-    ========================= */
-
+    /* Validation */
     const validateForm = () => {
         const newErrors = {};
 
-
-        // FULL NAME
-
-        if (!formData.fullName.trim()) {
-            newErrors.fullName = "Full name is required.";
+        if (!formData.name.trim()) {
+            newErrors.name = "Full name is required.";
         }
-
-
-        // EMAIL
 
         if (!formData.email.trim()) {
             newErrors.email = "Email address is required.";
@@ -68,38 +55,24 @@ const ContactForm = () => {
             newErrors.email = "Enter a valid email address.";
         }
 
-
-        // COUNTRY
-
         if (!formData.country.trim()) {
             newErrors.country = "Country is required.";
         }
 
-
-        // BUSINESS TYPE
-
-        if (!formData.businessType.trim()) {
-            newErrors.businessType = "Business type is required.";
+        if (!formData.business_type.trim()) {
+            newErrors.business_type = "Business type is required.";
         }
-
-
-        // MESSAGE
 
         if (!formData.message.trim()) {
             newErrors.message = "Message is required.";
         }
-
 
         setErrors(newErrors);
 
         return Object.keys(newErrors).length === 0;
     };
 
-
-    /* =========================
-       NOTIFICATION
-    ========================= */
-
+    /* Notification */
     const showNotification = (type, message) => {
         setNotification({
             show: true,
@@ -116,11 +89,7 @@ const ContactForm = () => {
         }, 3500);
     };
 
-
-    /* =========================
-       SUBMIT
-    ========================= */
-
+    /* Submit */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -131,130 +100,194 @@ const ContactForm = () => {
         setIsSending(true);
 
         try {
-            /*
-                TEMPORARY MOCK REQUEST
+            const form = e.currentTarget;
+            const submitData = new FormData(form);
 
-                Replace this later with the actual
-                backend / email service request.
-            */
-
-            await new Promise((resolve) =>
-                setTimeout(resolve, 1200)
+            submitData.append(
+                "access_key",
+                import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
             );
 
+            submitData.set("name", formData.name.trim());
+            submitData.set("email", formData.email.trim());
+            submitData.set("country", formData.country.trim());
+            submitData.set(
+                "business_type",
+                formData.business_type.trim()
+            );
+            submitData.set("message", formData.message.trim());
 
-            // CLEAR FORM ONLY AFTER SUCCESS
+            if (formData.subject.trim()) {
+                submitData.set(
+                    "subject",
+                    formData.subject.trim()
+                );
+            } else {
+                submitData.delete("subject");
+            }
+
+            const data = Object.fromEntries(submitData);
+            const json = JSON.stringify(data);
+
+            const response = await fetch(
+                "https://api.web3forms.com/submit",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: json
+                }
+            );
+
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(
+                    result.message || "Form submission failed."
+                );
+            }
 
             setFormData(initialForm);
             setErrors({});
-
-
-            // SUCCESS NOTIFICATION
+            form.reset();
 
             showNotification(
                 "success",
                 "Message sent successfully."
             );
-
         } catch (error) {
-
-            // ERROR NOTIFICATION
+            console.error("Web3Forms error:", error);
 
             showNotification(
                 "error",
                 "Something went wrong. Please try again."
             );
-
         } finally {
             setIsSending(false);
         }
     };
 
-
     return (
         <section className="contact-form-section">
-
-            {/* =========================
-                FULL WIDTH IMAGE
-            ========================= */}
-
-            <div className="contact-image">
+            <motion.div
+                className="contact-image"
+                initial={{
+                    opacity: 0,
+                    x: -90
+                }}
+                animate={{
+                    opacity: 1,
+                    x: 0
+                }}
+                transition={{
+                    duration: 2,
+                    ease: [0.16, 1, 0.3, 1]
+                }}
+            >
                 <div className="contact-image-overlay"></div>
-            </div>
-
-
-            {/* =========================
-                FORM
-            ========================= */}
+            </motion.div>
 
             <div className="container contact-form-container">
-
-                <div className="contact-form-card">
-
-
-                    {/* HEADING */}
-
-                    <div className="contact-form-heading">
-
-                        <h1>
-                            LET’S DO BUSINESS.
-                        </h1>
+                <motion.div
+                    className="contact-form-card"
+                    initial={{
+                        opacity: 0,
+                        x: 90,
+                        y: 70
+                    }}
+                    animate={{
+                        opacity: 1,
+                        x: 0,
+                        y: 0
+                    }}
+                    transition={{
+                        duration: 2,
+                        delay: 0.15,
+                        ease: [0.16, 1, 0.3, 1]
+                    }}
+                >
+                    <motion.div
+                        className="contact-form-heading"
+                        initial={{
+                            opacity: 0,
+                            y: 80
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.3,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                    >
+                        <h1>LET’S DO BUSINESS.</h1>
 
                         <p>
                             Tell us about your requirements, questions or
                             partnership ideas. We'd be happy to hear from you.
                         </p>
+                    </motion.div>
 
-                    </div>
-
-
-                    {/* FORM */}
-
-                    <form
+                    <motion.form
                         className="contact-form"
                         onSubmit={handleSubmit}
                         noValidate
+                        initial={{
+                            opacity: 0,
+                            y: 70
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 1.9,
+                            delay: 0.5,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
                     >
-
-
-                        {/* FULL NAME */}
+                        <input
+                            type="checkbox"
+                            name="botcheck"
+                            tabIndex="-1"
+                            autoComplete="off"
+                            style={{ display: "none" }}
+                        />
 
                         <div
                             className={`contact-field ${
-                                errors.fullName ? "has-error" : ""
+                                errors.name ? "has-error" : ""
                             }`}
                         >
-
-                            <label htmlFor="fullName">
+                            <label htmlFor="name">
                                 Full Name <span>*</span>
                             </label>
 
                             <input
-                                id="fullName"
+                                id="name"
                                 type="text"
-                                name="fullName"
+                                name="name"
                                 placeholder="Enter your name"
-                                value={formData.fullName}
+                                value={formData.name}
                                 onChange={handleChange}
                             />
 
-                            {errors.fullName && (
+                            {errors.name && (
                                 <small className="contact-error">
-                                    {errors.fullName}
+                                    {errors.name}
                                 </small>
                             )}
-
                         </div>
-
-
-                        {/* EMAIL */}
 
                         <div
                             className={`contact-field ${
                                 errors.email ? "has-error" : ""
                             }`}
                         >
-
                             <label htmlFor="email">
                                 Email Address <span>*</span>
                             </label>
@@ -273,18 +306,13 @@ const ContactForm = () => {
                                     {errors.email}
                                 </small>
                             )}
-
                         </div>
-
-
-                        {/* COUNTRY */}
 
                         <div
                             className={`contact-field ${
                                 errors.country ? "has-error" : ""
                             }`}
                         >
-
                             <label htmlFor="country">
                                 Country <span>*</span>
                             </label>
@@ -303,46 +331,34 @@ const ContactForm = () => {
                                     {errors.country}
                                 </small>
                             )}
-
                         </div>
-
-
-                        {/* BUSINESS TYPE */}
 
                         <div
                             className={`contact-field ${
-                                errors.businessType
-                                    ? "has-error"
-                                    : ""
+                                errors.business_type ? "has-error" : ""
                             }`}
                         >
-
-                            <label htmlFor="businessType">
+                            <label htmlFor="business_type">
                                 Business Type <span>*</span>
                             </label>
 
                             <input
-                                id="businessType"
+                                id="business_type"
                                 type="text"
-                                name="businessType"
+                                name="business_type"
                                 placeholder="Retailer, distributor, restaurant..."
-                                value={formData.businessType}
+                                value={formData.business_type}
                                 onChange={handleChange}
                             />
 
-                            {errors.businessType && (
+                            {errors.business_type && (
                                 <small className="contact-error">
-                                    {errors.businessType}
+                                    {errors.business_type}
                                 </small>
                             )}
-
                         </div>
 
-
-                        {/* SUBJECT */}
-
                         <div className="contact-field contact-field-full">
-
                             <label htmlFor="subject">
                                 Subject
                             </label>
@@ -355,20 +371,13 @@ const ContactForm = () => {
                                 value={formData.subject}
                                 onChange={handleChange}
                             />
-
                         </div>
-
-
-                        {/* MESSAGE */}
 
                         <div
                             className={`contact-field contact-field-full ${
-                                errors.message
-                                    ? "has-error"
-                                    : ""
+                                errors.message ? "has-error" : ""
                             }`}
                         >
-
                             <label htmlFor="message">
                                 Message / Requirements <span>*</span>
                             </label>
@@ -386,14 +395,9 @@ const ContactForm = () => {
                                     {errors.message}
                                 </small>
                             )}
-
                         </div>
 
-
-                        {/* SUBMIT */}
-
                         <div className="contact-submit">
-
                             <button
                                 type="submit"
                                 disabled={isSending}
@@ -404,38 +408,22 @@ const ContactForm = () => {
                                         : "SEND MESSAGE"}
                                 </span>
                             </button>
-
                         </div>
-
-                    </form>
-
-                </div>
-
+                    </motion.form>
+                </motion.div>
             </div>
-
-
-            {/* =========================
-                NOTIFICATION
-            ========================= */}
 
             <div
                 className={`contact-notification ${
                     notification.show ? "show" : ""
                 } ${notification.type}`}
             >
-
                 <div className="contact-notification-icon">
-                    {notification.type === "success"
-                        ? "✓"
-                        : "!"}
+                    {notification.type === "success" ? "✓" : "!"}
                 </div>
 
-                <p>
-                    {notification.message}
-                </p>
-
+                <p>{notification.message}</p>
             </div>
-
         </section>
     );
 };
