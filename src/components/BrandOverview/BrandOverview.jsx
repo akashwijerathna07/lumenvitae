@@ -129,103 +129,57 @@ const BrandOverview = () => {
                         </h2>
                     </motion.div>
 
-                    <div
+                    <motion.div
                         ref={sliderRef}
                         className={`brand-overview-images ${
                             isDragging ? "is-dragging" : ""
                         }`}
+                        initial={{
+                            opacity: 0,
+                            y: 80
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.25
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.2,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
                         onMouseDown={handleMouseDown}
                         onMouseMove={handleMouseMove}
                         onMouseUp={stopDragging}
                         onMouseLeave={stopDragging}
                     >
-                        <motion.div
-                            className="overview-image"
-                            initial={{
-                                opacity: 0,
-                                y: 30,
-                                scale: 0.985
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                y: 0,
-                                scale: 1
-                            }}
-                            viewport={{
-                                once: true,
-                                amount: 0.3
-                            }}
-                            transition={{
-                                duration: 2.2,
-                                delay: 0.2,
-                                ease: [0.16, 1, 0.3, 1]
-                            }}
-                        >
+                        <div className="overview-image">
                             <img
                                 src="/images/about-1.webp"
                                 alt="Jar packaging"
                                 draggable="false"
                             />
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            className="overview-image overview-image-large"
-                            initial={{
-                                opacity: 0,
-                                y: 30,
-                                scale: 0.985
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                y: 0,
-                                scale: 1
-                            }}
-                            viewport={{
-                                once: true,
-                                amount: 0.3
-                            }}
-                            transition={{
-                                duration: 2.2,
-                                delay: 0.5,
-                                ease: [0.16, 1, 0.3, 1]
-                            }}
-                        >
+                        <div className="overview-image overview-image-large">
                             <img
                                 src="/images/about-2.webp"
                                 alt="Cinnamon packaging"
                                 draggable="false"
                             />
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            className="overview-image"
-                            initial={{
-                                opacity: 0,
-                                y: 30,
-                                scale: 0.985
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                y: 0,
-                                scale: 1
-                            }}
-                            viewport={{
-                                once: true,
-                                amount: 0.3
-                            }}
-                            transition={{
-                                duration: 2.2,
-                                delay: 0.8,
-                                ease: [0.16, 1, 0.3, 1]
-                            }}
-                        >
+                        <div className="overview-image">
                             <img
                                 src="/images/about-3.webp"
                                 alt="Packaging design"
                                 draggable="false"
                             />
-                        </motion.div>
-                    </div>
+                        </div>
+                    </motion.div>
 
                     <motion.div
                         className="brand-overview-message"
