@@ -61,52 +61,18 @@ const WhyUs = () => {
             ref={sectionRef}
         >
             <div className="why-sri-lankan-sticky">
-
-                <motion.img
+                <img
                     ref={imageRef}
                     src="/why-sri-lankan.webp"
                     alt="Sri Lankan spice plantation"
                     className="why-sri-lankan-bg"
-                    initial={{
-                        opacity: 0,
-                        scale: 1.16
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        scale: 1.08
-                    }}
-                    viewport={{
-                        once: true,
-                        amount: 0.2
-                    }}
-                    transition={{
-                        duration: 2,
-                        ease: [0.16, 1, 0.3, 1]
-                    }}
                 />
 
                 <div className="why-sri-lankan-overlay"></div>
 
-                <motion.div
+                <div
                     className="container why-sri-lankan-content"
                     ref={contentRef}
-                    initial={{
-                        opacity: 0,
-                        y: 90
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    viewport={{
-                        once: true,
-                        amount: 0.35
-                    }}
-                    transition={{
-                        duration: 1.9,
-                        delay: 0.25,
-                        ease: [0.16, 1, 0.3, 1]
-                    }}
                 >
                     <motion.span
                         initial={{
@@ -118,11 +84,11 @@ const WhyUs = () => {
                             y: 0
                         }}
                         viewport={{
-                            once: true
+                            once: true,
+                            amount: 0.4
                         }}
                         transition={{
                             duration: 1.8,
-                            delay: 0.35,
                             ease: [0.16, 1, 0.3, 1]
                         }}
                     >
@@ -139,11 +105,12 @@ const WhyUs = () => {
                             y: 0
                         }}
                         viewport={{
-                            once: true
+                            once: true,
+                            amount: 0.4
                         }}
                         transition={{
                             duration: 2,
-                            delay: 0.5,
+                            delay: 0.15,
                             ease: [0.16, 1, 0.3, 1]
                         }}
                     >
@@ -162,11 +129,12 @@ const WhyUs = () => {
                             y: 0
                         }}
                         viewport={{
-                            once: true
+                            once: true,
+                            amount: 0.4
                         }}
                         transition={{
                             duration: 1.9,
-                            delay: 0.7,
+                            delay: 0.3,
                             ease: [0.16, 1, 0.3, 1]
                         }}
                     >
@@ -185,11 +153,12 @@ const WhyUs = () => {
                             y: 0
                         }}
                         viewport={{
-                            once: true
+                            once: true,
+                            amount: 0.4
                         }}
                         transition={{
                             duration: 1.8,
-                            delay: 0.9,
+                            delay: 0.45,
                             ease: [0.16, 1, 0.3, 1]
                         }}
                     >
@@ -200,8 +169,7 @@ const WhyUs = () => {
                             <span>DISCOVER OUR STORY</span>
                         </Link>
                     </motion.div>
-                </motion.div>
-
+                </div>
             </div>
         </section>
     );
