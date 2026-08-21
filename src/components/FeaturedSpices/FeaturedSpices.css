@@ -130,7 +130,9 @@
     font-weight: 600;
     letter-spacing: 1.3px;
     text-decoration: none;
-    transition: color 0.35s ease, border-color 0.35s ease;
+    transition:
+        color 0.35s ease,
+        border-color 0.35s ease;
 }
 
 .spice-card-content a span {
@@ -154,6 +156,11 @@
 
 .spice-card-content a:hover::before {
     transform: translateY(0);
+}
+
+/* Indicators */
+.spice-indicators {
+    display: none;
 }
 
 /* Tablet */
@@ -234,5 +241,31 @@
 
     .spice-card-content {
         padding: 18px;
+    }
+
+    .spice-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 7px;
+        margin-top: 18px;
+    }
+
+    .spice-indicators button {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: none;
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.35);
+        cursor: pointer;
+        transition:
+            width 0.4s ease,
+            background-color 0.4s ease;
+    }
+
+    .spice-indicators button.active {
+        width: 24px;
+        background: var(--color-white);
     }
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import "./FeaturedSpices.css";
@@ -11,6 +11,8 @@ const FeaturedSpices = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     const spices = [
         {
@@ -50,8 +52,24 @@ const FeaturedSpices = () => {
         { x: 80, y: 80 }
     ];
 
+    /* Detect mobile */
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 600);
+        };
+
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    /* Drag start */
     const handleMouseDown = (e) => {
-        if (!sliderRef.current) return;
+        if (!sliderRef.current || !isMobile) return;
 
         setIsDragging(true);
 
@@ -64,8 +82,15 @@ const FeaturedSpices = () => {
         );
     };
 
+    /* Drag */
     const handleMouseMove = (e) => {
-        if (!isDragging || !sliderRef.current) return;
+        if (
+            !isDragging ||
+            !sliderRef.current ||
+            !isMobile
+        ) {
+            return;
+        }
 
         e.preventDefault();
 
@@ -79,8 +104,60 @@ const FeaturedSpices = () => {
             scrollLeft - distance;
     };
 
+    /* Stop drag */
     const stopDragging = () => {
         setIsDragging(false);
+    };
+
+    /* Update indicator */
+    const handleScroll = () => {
+        const slider = sliderRef.current;
+
+        if (!slider || !isMobile) return;
+
+        const cards = slider.querySelectorAll(".spice-card");
+
+        if (!cards.length) return;
+
+        const sliderCenter =
+            slider.scrollLeft + slider.clientWidth / 2;
+
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cards.forEach((card, index) => {
+            const cardCenter =
+                card.offsetLeft + card.offsetWidth / 2;
+
+            const distance =
+                Math.abs(sliderCenter - cardCenter);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        setActiveIndex(closestIndex);
+    };
+
+    /* Indicator click */
+    const scrollToCard = (index) => {
+        const slider = sliderRef.current;
+
+        if (!slider) return;
+
+        const cards = slider.querySelectorAll(".spice-card");
+        const card = cards[index];
+
+        if (!card) return;
+
+        slider.scrollTo({
+            left: card.offsetLeft,
+            behavior: "smooth"
+        });
+
+        setActiveIndex(index);
     };
 
     return (
@@ -108,7 +185,8 @@ const FeaturedSpices = () => {
                     <span>OUR COLLECTION</span>
 
                     <h2>
-                        The flavours <br />
+                        The flavours
+                        <br />
                         of the island
                     </h2>
 
@@ -118,65 +196,128 @@ const FeaturedSpices = () => {
                     </p>
                 </motion.div>
 
-                <div
-                    className={`spice-grid ${
-                        isDragging ? "dragging" : ""
-                    }`}
-                    ref={sliderRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={stopDragging}
-                    onMouseLeave={stopDragging}
-                >
+                {isMobile ? (
+                    <motion.div
+                        className={`spice-grid ${
+                            isDragging ? "dragging" : ""
+                        }`}
+                        ref={sliderRef}
+                        initial={{
+                            opacity: 0,
+                            y: 80
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            y: 0
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.2
+                        }}
+                        transition={{
+                            duration: 2,
+                            delay: 0.2,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={stopDragging}
+                        onMouseLeave={stopDragging}
+                        onScroll={handleScroll}
+                    >
+                        {spices.map((spice) => (
+                            <div
+                                className={spice.className}
+                                key={spice.slug}
+                            >
+                                <div className="spice-image-container">
+                                    <img
+                                        src={spice.image}
+                                        alt={spice.name}
+                                        draggable="false"
+                                    />
+                                </div>
+
+                                <div className="spice-card-content">
+                                    <h3>{spice.name}</h3>
+
+                                    <Link
+                                        to={`/products/${spice.slug}`}
+                                        onClick={scrollToTop}
+                                    >
+                                        <span>DISCOVER</span>
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
+                    </motion.div>
+                ) : (
+                    <div
+                        className="spice-grid"
+                        ref={sliderRef}
+                    >
+                        {spices.map((spice, index) => (
+                            <motion.div
+                                className={spice.className}
+                                key={spice.slug}
+                                initial={{
+                                    opacity: 0,
+                                    x: cardAnimations[index].x,
+                                    y: cardAnimations[index].y,
+                                    scale: 0.96
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                    y: 0,
+                                    scale: 1
+                                }}
+                                viewport={{
+                                    once: true,
+                                    amount: 0.25
+                                }}
+                                transition={{
+                                    duration: 1.9,
+                                    delay: index * 0.18,
+                                    ease: [0.16, 1, 0.3, 1]
+                                }}
+                            >
+                                <div className="spice-image-container">
+                                    <img
+                                        src={spice.image}
+                                        alt={spice.name}
+                                        draggable="false"
+                                    />
+                                </div>
+
+                                <div className="spice-card-content">
+                                    <h3>{spice.name}</h3>
+
+                                    <Link
+                                        to={`/products/${spice.slug}`}
+                                        onClick={scrollToTop}
+                                    >
+                                        <span>DISCOVER</span>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
+
+                <div className="spice-indicators">
                     {spices.map((spice, index) => (
-                        <motion.div
-                            className={spice.className}
+                        <button
                             key={spice.slug}
-                            initial={{
-                                opacity: 0,
-                                x: cardAnimations[index].x,
-                                y: cardAnimations[index].y,
-                                scale: 0.96
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                x: 0,
-                                y: 0,
-                                scale: 1
-                            }}
-                            viewport={{
-                                once: true,
-                                amount: 0.25
-                            }}
-                            transition={{
-                                duration: 1.9,
-                                delay: index * 0.18,
-                                ease: [0.16, 1, 0.3, 1]
-                            }}
-                        >
-                            <div className="spice-image-container">
-                                <img
-                                    src={spice.image}
-                                    alt={spice.name}
-                                    draggable="false"
-                                />
-                            </div>
-
-                            <div className="spice-card-content">
-                                <h3>
-                                    {spice.name}
-                                </h3>
-
-                                <Link
-                                    to={`/products/${spice.slug}`}
-                                    onClick={scrollToTop}
-                                >
-                                    <span>
-                                        DISCOVER
-                                    </span>
-                                </Link>
-                            </div>
-                        </motion.div>
+                            type="button"
+                            className={
+                                activeIndex === index
+                                    ? "active"
+                                    : ""
+                            }
+                            onClick={() => scrollToCard(index)}
+                            aria-label={`Go to ${spice.name}`}
+                        />
                     ))}
                 </div>
             </div>
